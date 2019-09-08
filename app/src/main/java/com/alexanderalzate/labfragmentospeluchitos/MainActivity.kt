@@ -54,11 +54,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         transaction.add(R.id.contenedor,agregarFragment).commit()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
+
 
     override fun onBackPressed() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
@@ -111,13 +107,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun enviarEliminar(nombre: String) {
 
+        var cont = 0
         if(nombre!=""){
             for (peluche in listPeluches) {
+                cont++
                 if (peluche.nombre == nombre) {
                     Toast.makeText(this, "Has eliminado el peluchito $nombre", Toast.LENGTH_SHORT).show()
                     listPeluches.remove(peluche)
                     break
                 }
+            }
+            if(cont>=listPeluches.size){
+                Toast.makeText(this, "Nombre del peluchito incorrecto", Toast.LENGTH_SHORT).show()
             }
 
         }else {
